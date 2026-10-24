@@ -3,46 +3,46 @@ const questionGroups = {
     {
       category: "Emosi dan suasana hati",
       questions: [
-        "Saya merasa sedih atau kehilangan semangat.",
-        "Suasana hati saya berubah dan sulit dipahami.",
-        "Saya merasa khawatir atau gelisah."
+        "Merasa sedih atau kehilangan semangat.",
+        "Suasana hati berubah dan sulit dipahami.",
+        " Tiba tiba merasa khawatir atau gelisah."
       ]
     },
     {
       category: "Pikiran dan tekanan sekolah",
       questions: [
-        "Saya merasa terbebani oleh tugas atau nilai sekolah.",
-        "Saya sulit berkonsentrasi saat belajar.",
-        "Saya terlalu memikirkan kesalahan atau kegagalan."
+        "Merasa terbebani oleh tugas atau nilai sekolah.",
+        "Sulit berkonsentrasi saat belajar atau ke distract karena masalah pribadi yang belum selesai.",
+        "Terlalu memikirkan kesalahan dan kegagalan."
       ]
     },
     {
       category: "Keluarga dan teman",
       questions: [
-        "Saya merasa tidak dipahami orang terdekat.",
-        "Saya merasa kesepian meskipun bersama orang lain.",
-        "Konflik dengan keluarga atau teman mengganggu pikiran saya."
+        "Merasa tidak mendapat support system dari keluarga.",
+        "Merasa kesepian dan tidak memiliki siapa siapa.",
+        "Konflik dengan keluarga atau teman sangat mengganggu pikiran."
       ]
     },
     {
       category: "Kepercayaan diri",
       questions: [
-        "Saya sering membandingkan diri dengan orang lain.",
-        "Saya merasa kurang berharga atau tidak cukup baik."
+        "Sering membandingkan diri dengan orang lain.",
+        "Merasa kurang berharga atau tidak cukup baik."
       ]
     },
     {
       category: "Tidur dan energi",
       questions: [
-        "Pola tidur saya terganggu.",
-        "Saya merasa lelah meskipun sudah beristirahat."
+        "Pola tidur terganggu karena belajar larut malam.",
+        "Merasa lelah meskipun sudah beristirahat."
       ]
     },
     {
       category: "Cara menghadapi masalah",
       questions: [
-        "Saya kesulitan menceritakan perasaan kepada orang yang dipercaya.",
-        "Saya merasa kesulitan menghadapi masalah sehari-hari."
+        "Sulitan bercerita kepada orang yang dipercaya.",
+        "Merasa pikiran menjadi berat padahal tidak sedang mengalami masalah."
       ]
     }
   ],
@@ -51,46 +51,46 @@ const questionGroups = {
     {
       category: "Emosi dan suasana hati",
       questions: [
-        "Saya merasa sedih atau kehilangan minat.",
-        "Saya merasa cemas atau gelisah.",
-        "Saya kesulitan memahami perubahan emosi saya."
+        "Merasa semua orang terlihat menyebalkan saat sedang lelah.",
+        "Cemas atau gelisah tanpa sebab.",
+        "Kesulitan mengontrol emosi."
       ]
     },
     {
       category: "Tekanan masa depan, kuliah, atau kerja",
       questions: [
-        "Saya merasa terbebani oleh tuntutan kuliah atau pekerjaan.",
-        "Saya khawatir tentang masa depan.",
-        "Saya merasa harus selalu berhasil memenuhi harapan orang lain."
+        "Memaksa diri untuk bisa melakukan semua hal.",
+        "Khawatir tentang masa depan.",
+        "Merasa harus selalu berhasil memenuhi harapan orang lain."
       ]
     },
     {
       category: "Keluarga dan pertemanan",
       questions: [
-        "Saya merasa tidak dipahami orang terdekat.",
-        "Saya merasa kesepian.",
-        "Konflik hubungan mengganggu ketenangan saya."
+        "Merasa tidak dipahami orang terdekat.",
+        "Merasa tidak mendapat support system.",
+        "Konflik hubungan mengganggu ketenangan."
       ]
     },
     {
       category: "Tidur dan respons tubuh",
       questions: [
-        "Pola tidur saya terganggu.",
-        "Saya merasa lelah atau sulit berkonsentrasi."
+        "Pola tidur saya terganggu karna bekerja atau belajar larut malam.",
+        "Selalu merasa lelah meskipun sudah beristirahat."
       ]
     },
     {
       category: "Cara menghadapi masalah",
       questions: [
-        "Saya kesulitan mencari dukungan saat menghadapi masalah.",
-        "Saya merasa kewalahan menghadapi kegiatan sehari-hari."
+        "Kesulitan mencari dukungan saat menghadapi masalah.",
+        "Merasa kewalahan menghadapi kegiatan sehari-hari."
       ]
     },
     {
       category: "Perasaan saat menghadapi masalah",
       questions: [
-        "Saya sering menyalahkan diri sendiri.",
-        "Saya merasa sulit menemukan hal yang membuat saya bersemangat."
+        "Sering menyalahkan diri sendiri.",
+        "Merasa sulit menemukan hal yang membuat saya bersemangat."
       ]
     }
   ]
