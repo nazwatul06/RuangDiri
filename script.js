@@ -1,312 +1,384 @@
-// ===== PILIHAN JAWABAN DAN SKOR =====
-const answers = [
-  { label: "Sering", score: 3 },
-  { label: "Beberapa kali", score: 2 },
-  { label: "Jarang", score: 1 },
-  { label: "Tidak pernah", score: 0 }
+const questionGroups = {
+  "15-18": [
+    {
+      category: "Emosi dan suasana hati",
+      questions: [
+        "Saya merasa sedih atau kehilangan semangat.",
+        "Suasana hati saya berubah dan sulit dipahami.",
+        "Saya merasa khawatir atau gelisah."
+      ]
+    },
+    {
+      category: "Pikiran dan tekanan sekolah",
+      questions: [
+        "Saya merasa terbebani oleh tugas atau nilai sekolah.",
+        "Saya sulit berkonsentrasi saat belajar.",
+        "Saya terlalu memikirkan kesalahan atau kegagalan."
+      ]
+    },
+    {
+      category: "Keluarga dan teman",
+      questions: [
+        "Saya merasa tidak dipahami orang terdekat.",
+        "Saya merasa kesepian meskipun bersama orang lain.",
+        "Konflik dengan keluarga atau teman mengganggu pikiran saya."
+      ]
+    },
+    {
+      category: "Kepercayaan diri",
+      questions: [
+        "Saya sering membandingkan diri dengan orang lain.",
+        "Saya merasa kurang berharga atau tidak cukup baik."
+      ]
+    },
+    {
+      category: "Tidur dan energi",
+      questions: [
+        "Pola tidur saya terganggu.",
+        "Saya merasa lelah meskipun sudah beristirahat."
+      ]
+    },
+    {
+      category: "Cara menghadapi masalah",
+      questions: [
+        "Saya kesulitan menceritakan perasaan kepada orang yang dipercaya.",
+        "Saya merasa kesulitan menghadapi masalah sehari-hari."
+      ]
+    }
+  ],
+
+  "19-25": [
+    {
+      category: "Emosi dan suasana hati",
+      questions: [
+        "Saya merasa sedih atau kehilangan minat.",
+        "Saya merasa cemas atau gelisah.",
+        "Saya kesulitan memahami perubahan emosi saya."
+      ]
+    },
+    {
+      category: "Tekanan masa depan, kuliah, atau kerja",
+      questions: [
+        "Saya merasa terbebani oleh tuntutan kuliah atau pekerjaan.",
+        "Saya khawatir tentang masa depan.",
+        "Saya merasa harus selalu berhasil memenuhi harapan orang lain."
+      ]
+    },
+    {
+      category: "Keluarga dan pertemanan",
+      questions: [
+        "Saya merasa tidak dipahami orang terdekat.",
+        "Saya merasa kesepian.",
+        "Konflik hubungan mengganggu ketenangan saya."
+      ]
+    },
+    {
+      category: "Tidur dan respons tubuh",
+      questions: [
+        "Pola tidur saya terganggu.",
+        "Saya merasa lelah atau sulit berkonsentrasi."
+      ]
+    },
+    {
+      category: "Cara menghadapi masalah",
+      questions: [
+        "Saya kesulitan mencari dukungan saat menghadapi masalah.",
+        "Saya merasa kewalahan menghadapi kegiatan sehari-hari."
+      ]
+    },
+    {
+      category: "Perasaan saat menghadapi masalah",
+      questions: [
+        "Saya sering menyalahkan diri sendiri.",
+        "Saya merasa sulit menemukan hal yang membuat saya bersemangat."
+      ]
+    }
+  ]
+};
+
+const answerOptions = [
+  { label: "Tidak pernah", value: 0 },
+  { label: "Jarang", value: 1 },
+  { label: "Beberapa kali", value: 2 },
+  { label: "Sering", value: 3 }
 ];
 
-// ===== PERTANYAAN USIA 15–18 TAHUN =====
-const teenQuestions = [
-  { category: "Emosi dan suasana hati", text: "Saya merasa sedih atau kehilangan semangat tanpa alasan yang jelas." },
-  { category: "Emosi dan suasana hati", text: "Saya mudah marah atau tersinggung karena hal-hal kecil." },
-  { category: "Emosi dan suasana hati", text: "Saya merasa cemas atau gelisah saat menjalani aktivitas sehari-hari." },
+const questionsContainer = document.getElementById("questions");
+const ageSelect = document.getElementById("usia");
+const resultContainer = document.getElementById("hasil");
 
-  { category: "Pikiran dan tekanan sekolah", text: "Saya merasa kewalahan menghadapi tugas, ujian, atau praktik sekolah." },
-  { category: "Pikiran dan tekanan sekolah", text: "Saya takut mengecewakan orang tua atau guru karena hasil belajar saya." },
-  { category: "Pikiran dan tekanan sekolah", text: "Saya membandingkan prestasi diri sendiri dengan pencapaian teman." },
-
-  { category: "Keluarga dan pertemanan", text: "Saya merasa tidak dipahami oleh keluarga atau teman." },
-  { category: "Keluarga dan pertemanan", text: "Saya merasa kesepian meskipun berada di tengah banyak orang." },
-  { category: "Keluarga dan pertemanan", text: "Saya takut menceritakan masalah karena khawatir akan dihakimi." },
-
-  { category: "Kepercayaan diri dan mengenali diri", text: "Saya merasa diri saya tidak cukup baik dibandingkan orang lain." },
-  { category: "Kepercayaan diri dan mengenali diri", text: "Saya kesulitan menerima kekurangan atau kesalahan diri sendiri." },
-
-  { category: "Tidur, energi, dan rutinitas", text: "Saya kesulitan tidur karena memikirkan berbagai masalah." },
-  { category: "Tidur, energi, dan rutinitas", text: "Saya merasa lelah atau sulit berkonsentrasi saat menjalani aktivitas." },
-
-  { category: "Menghadapi masalah dan dukungan", text: "Saya memendam masalah karena tidak tahu kepada siapa harus bercerita." },
-  { category: "Menghadapi masalah dan dukungan", text: "Saya kesulitan menenangkan diri ketika menghadapi masalah." }
-];
-
-// ===== PERTANYAAN USIA 19–25 TAHUN =====
-const adultQuestions = [
-  { category: "Emosional dan suasana hati", text: "Saya merasa sedih atau kehilangan semangat tanpa alasan yang jelas." },
-  { category: "Emosional dan suasana hati", text: "Saya merasa cemas atau khawatir secara berlebihan." },
-  { category: "Emosional dan suasana hati", text: "Saya mudah tersinggung ketika menghadapi tekanan." },
-
-  { category: "Masa depan dan tekanan kuliah/kerja", text: "Saya merasa tertekan ketika memikirkan masa depan." },
-  { category: "Masa depan dan tekanan kuliah/kerja", text: "Saya merasa tertinggal saat membandingkan pencapaian saya dengan orang lain." },
-  { category: "Masa depan dan tekanan kuliah/kerja", text: "Saya merasa kewalahan menghadapi tuntutan kuliah, pekerjaan, atau tanggung jawab lainnya." },
-
-  { category: "Keluarga dan pertemanan", text: "Saya merasa sulit menceritakan masalah kepada keluarga atau teman." },
-  { category: "Keluarga dan pertemanan", text: "Saya merasa kesepian meskipun memiliki hubungan sosial." },
-
-  { category: "Tidur, energi, dan respons tubuh", text: "Saya kesulitan tidur karena memikirkan berbagai masalah." },
-  { category: "Tidur, energi, dan respons tubuh", text: "Saya merasa kelelahan secara fisik atau mental meskipun sudah beristirahat." },
-
-  { category: "Strategi menghadapi masalah", text: "Saya menunda menyelesaikan masalah karena merasa kewalahan." },
-  { category: "Strategi menghadapi masalah", text: "Saya kesulitan menentukan langkah ketika menghadapi masalah yang rumit." },
-  { category: "Strategi menghadapi masalah", text: "Saya memendam emosi agar terlihat kuat di depan orang lain." },
-
-  { category: "Perasaan saat mendapat masalah", text: "Saya menyalahkan diri sendiri ketika sesuatu tidak berjalan sesuai rencana." },
-  { category: "Perasaan saat mendapat masalah", text: "Saya merasa kewalahan ketika beberapa masalah datang secara bersamaan." }
-];
-
-// ===== MENGAMBIL ELEMEN HTML =====
-const welcome = document.getElementById("welcome");
-const quiz = document.getElementById("quiz");
-const result = document.getElementById("result");
-const ageGroup = document.getElementById("ageGroup");
-const questionsBox = document.getElementById("questions");
-const quizForm = document.getElementById("quizForm");
-const progressText = document.getElementById("progressText");
-const progressBar = document.getElementById("progressBar");
-
-let currentQuestions = [];
-
-// ===== MEMBUAT TAMPILAN PERTANYAAN =====
 function renderQuestions() {
-  questionsBox.innerHTML = "";
+  questionsContainer.replaceChildren();
+  resultContainer.replaceChildren();
 
-  const categories = [
-    ...new Set(currentQuestions.map(question => question.category))
-  ];
+  let number = 0;
 
-  categories.forEach(category => {
+  questionGroups[ageSelect.value].forEach(group => {
     const heading = document.createElement("h3");
-    heading.textContent = category;
-    questionsBox.appendChild(heading);
+    heading.textContent = group.category;
+    questionsContainer.appendChild(heading);
 
-    currentQuestions.forEach((question, index) => {
-      if (question.category !== category) return;
+    group.questions.forEach(question => {
+      number++;
 
-      const questionBox = document.createElement("div");
-      questionBox.className = "question";
+      const card = document.createElement("div");
+      card.className = "question";
 
-      const questionText = document.createElement("p");
-      questionText.textContent = `${index + 1}. ${question.text}`;
-      questionBox.appendChild(questionText);
+      const title = document.createElement("p");
+      title.textContent = `${number}. ${question}`;
+      card.appendChild(title);
 
-      const optionsBox = document.createElement("div");
-      optionsBox.className = "options";
+      const options = document.createElement("div");
+      options.className = "options";
 
-      answers.forEach(answer => {
+      answerOptions.forEach(option => {
         const label = document.createElement("label");
-        label.className = "option";
-
         const radio = document.createElement("input");
+
         radio.type = "radio";
-        radio.name = `q${index}`;
-        radio.value = answer.score;
-        radio.addEventListener("change", updateProgress);
+        radio.name = `q${number}`;
+        radio.value = option.value;
+        radio.required = true;
 
-        const span = document.createElement("span");
-        span.textContent = answer.label;
-
-        label.appendChild(radio);
-        label.appendChild(span);
-        optionsBox.appendChild(label);
+        label.append(radio, document.createTextNode(option.label));
+        options.appendChild(label);
       });
 
-      questionBox.appendChild(optionsBox);
-      questionsBox.appendChild(questionBox);
+      card.appendChild(options);
+      questionsContainer.appendChild(card);
     });
   });
-
-  updateProgress();
 }
 
-// ===== MEMPERBARUI PROGRES JAWABAN =====
-function updateProgress() {
-  const answered = currentQuestions.filter((_, index =>
-    document.querySelector(`input[name="q${index}"]:checked`)
-  )).length;
+ageSelect.addEventListener("change", renderQuestions);
 
-  progressText.textContent =
-    `${answered} dari ${currentQuestions.length} pertanyaan dijawab`;
+document.getElementById("submitTest").addEventListener("click", () => {
+  const questions = questionsContainer.querySelectorAll(".question");
+  const answers = [];
 
-  progressBar.style.width =
-    `${(answered / currentQuestions.length) * 100}%`;
-}
+  for (let i = 1; i <= questions.length; i++) {
+    const selected = document.querySelector(`input[name="q${i}"]:checked`);
 
-// ===== MEMULAI KUESIONER =====
-document.getElementById("startBtn").addEventListener("click", () => {
-  if (!ageGroup.value) {
-    alert("Silakan pilih kelompok usia terlebih dahulu.");
-    return;
-  }
-
-  currentQuestions = ageGroup.value === "teen"
-    ? teenQuestions
-    : adultQuestions;
-
-  document.getElementById("quizTitle").textContent =
-    ageGroup.value === "teen"
-      ? "Refleksi Diri Usia 15–18 Tahun"
-      : "Refleksi Diri Usia 19–25 Tahun";
-
-  welcome.hidden = true;
-  result.hidden = true;
-  quiz.hidden = false;
-
-  renderQuestions();
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-// ===== MENGHITUNG DAN MENAMPILKAN HASIL =====
-quizForm.addEventListener("submit", event => {
-  event.preventDefault();
-
-  const scores = currentQuestions.map((_, index) => {
-    const selected = document.querySelector(
-      `input[name="q${index}"]:checked`
-    );
-
-    return selected ? Number(selected.value) : null;
-  });
-
-  if (scores.some(score => score === null)) {
-    alert("Silakan jawab semua 15 pertanyaan terlebih dahulu.");
-
-    const firstUnanswered = scores.findIndex(score => score === null);
-
-    document.querySelector(
-      `.question input[name="q${firstUnanswered}"]`
-    ).closest(".question").scrollIntoView({
-      behavior: "smooth",
-      block: "center"
-    });
-
-    return;
-  }
-
-  const total = scores.reduce((sum, score) => sum + score, 0);
-  const maxScore = currentQuestions.length * 3;
-  const percentage = Math.round((total / maxScore) * 100);
-
-  let colorClass;
-  let statusText;
-  let summaryText;
-  let recommendationText;
-
-  if (percentage <= 33) {
-    colorClass = "green";
-    statusText = "Hijau · Relatif jarang";
-
-    summaryText =
-      "Pengalaman yang mengganggu relatif jarang kamu laporkan. Tetap jaga keseimbangan dan rawat dirimu.";
-
-    recommendationText =
-      "🌱 Pertahankan rutinitas yang membantumu. Kamu tetap boleh mencari dukungan kapan pun membutuhkannya.";
-
-  } else if (percentage <= 66) {
-    colorClass = "yellow";
-    statusText = "Kuning · Perlu diperhatikan";
-
-    summaryText =
-      "Beberapa pengalaman mungkin cukup sering muncul. Cobalah mengenali pemicu dan kebutuhanmu.";
-
-    recommendationText =
-      "💛 Coba bicarakan perasaanmu dengan orang yang dipercaya. Pertimbangkan dukungan guru BK, konselor, atau tenaga profesional jika keseharianmu terganggu.";
-
-  } else {
-    colorClass = "red";
-    statusText = "Merah · Pertimbangkan dukungan";
-
-    summaryText =
-      "Kamu melaporkan cukup banyak pengalaman yang mengganggu. Kamu tidak harus menghadapinya sendirian.";
-
-    recommendationText =
-      "❤️ Pertimbangkan berbicara dengan orang tepercaya atau tenaga profesional. Jika merasa tidak aman, segera cari bantuan orang dewasa tepercaya atau layanan darurat setempat.";
-  }
-
-  document.getElementById("percentage").textContent =
-    `${percentage}%`;
-
-  const status = document.getElementById("status");
-  status.className = `result-badge ${colorClass}`;
-  status.textContent = statusText;
-
-  document.getElementById("summary").textContent = summaryText;
-  document.getElementById("recommendation").textContent =
-    recommendationText;
-
-  // ===== HASIL PER KATEGORI =====
-  const categoryResults = document.getElementById("categoryResults");
-  categoryResults.innerHTML = "";
-
-  const categories = [
-    ...new Set(currentQuestions.map(question => question.category))
-  ];
-
-  categories.forEach(category => {
-    const indices = currentQuestions
-      .map((question, index) =>
-        question.category === category ? index : -1
-      )
-      .filter(index => index !== -1);
-
-    const categoryScore = indices.reduce(
-      (sum, index) => sum + scores[index], 0
-    );
-
-    const categoryMax = indices.length * 3;
-    const categoryPercent = Math.round(
-      (categoryScore / categoryMax) * 100
-    );
-
-    const row = document.createElement("div");
-    row.className = "category-result";
-
-    const title = document.createElement("strong");
-    title.textContent = category;
-
-    const percent = document.createElement("span");
-    percent.textContent = ` — ${categoryPercent}%`;
-
-    const track = document.createElement("div");
-    track.className = "progress-track";
-
-    const bar = document.createElement("div");
-    bar.className = "progress-bar";
-    bar.style.width = `${categoryPercent}%`;
-
-    if (categoryPercent <= 33) {
-      bar.style.background = "#27945b";
-    } else if (categoryPercent <= 66) {
-      bar.style.background = "#d9a02d";
-    } else {
-      bar.style.background = "#d84859";
+    if (!selected) {
+      alert(`Silakan jawab pertanyaan nomor ${i} terlebih dahulu.`);
+      questions[i - 1].scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+      return;
     }
 
-    track.appendChild(bar);
-    row.appendChild(title);
-    row.appendChild(percent);
-    row.appendChild(track);
-    categoryResults.appendChild(row);
+    answers.push(Number(selected.value));
+  }
+
+  const total = answers.reduce((sum, value) => sum + value, 0);
+  const maxScore = answers.length * 3;
+  const percentage = Math.round((total / maxScore) * 100);
+
+  let category;
+  let className;
+  let recommendation;
+
+  if (percentage <= 33) {
+    category = "Hijau — skor refleksi relatif rendah";
+    className = "good";
+    recommendation =
+      "Pertahankan kebiasaan yang mendukung kesejahteraanmu. Tetap beri ruang untuk beristirahat, bercerita, dan menjaga hubungan yang sehat.";
+  } else if (percentage <= 66) {
+    category = "Kuning — perlu perhatian";
+    className = "medium";
+    recommendation =
+      "Cobalah mengenali hal yang paling membebani pikiranmu. Atur waktu istirahat, lakukan kegiatan yang menenangkan, dan pertimbangkan berbicara dengan orang yang kamu percaya.";
+  } else {
+    category = "Merah — perlu dukungan lebih";
+    className = "high";
+    recommendation =
+      "Kamu layak mendapatkan dukungan. Pertimbangkan untuk berbicara dengan orang dewasa yang dipercaya, guru BK, psikolog, atau tenaga kesehatan.";
+  }
+
+  resultContainer.replaceChildren();
+
+  const result = document.createElement("div");
+  result.className = `result ${className}`;
+
+  const title = document.createElement("h3");
+  title.textContent = "Hasil refleksi kamu";
+
+  const score = document.createElement("p");
+  score.textContent = `Skor refleksi: ${percentage}%`;
+
+  const status = document.createElement("p");
+  status.textContent = category;
+
+  const progress = document.createElement("div");
+  progress.className = "progress";
+  progress.setAttribute("role", "progressbar");
+  progress.setAttribute("aria-valuenow", percentage);
+  progress.setAttribute("aria-valuemin", 0);
+  progress.setAttribute("aria-valuemax", 100);
+
+  const bar = document.createElement("span");
+  bar.style.width = `${percentage}%`;
+  progress.appendChild(bar);
+
+  const advice = document.createElement("p");
+  advice.textContent = recommendation;
+
+  const motivation = document.createElement("p");
+  motivation.textContent =
+    "💜 Kamu tidak harus menyelesaikan semuanya hari ini. Langkah kecil untuk merawat diri tetap berarti.";
+
+  const disclaimer = document.createElement("p");
+  disclaimer.className = "note";
+  disclaimer.textContent =
+    "Hasil ini hanya refleksi sederhana, bukan diagnosis kesehatan mental. Persentase bukan ukuran pasti kondisi mental. Jika kamu merasa terganggu atau khawatir, mintalah bantuan profesional.";
+
+  const printButton = document.createElement("button");
+  printButton.className = "button";
+  printButton.textContent = "Cetak atau simpan sebagai PDF";
+  printButton.addEventListener("click", () => window.print());
+
+  result.append(title, score, progress, status, advice, motivation, disclaimer, printButton);
+  resultContainer.appendChild(result);
+  result.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+// RUANG CERITA: cerita disimpan hanya di browser perangkat ini.
+const STORAGE_KEY = "ruangDiriStoriesV1";
+const storyForm = document.getElementById("storyForm");
+const storyList = document.getElementById("daftarCerita");
+const storyResponse = document.getElementById("responsCerita");
+
+function readStories() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    return Array.isArray(saved) ? saved : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveStories(stories) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(stories));
+    return true;
+  } catch {
+    alert("Cerita tidak dapat disimpan. Periksa pengaturan penyimpanan browser.");
+    return false;
+  }
+}
+
+const moodAdvice = {
+  sedih: "Tidak apa-apa jika hari ini terasa berat. Cobalah bercerita kepada seseorang yang kamu percaya.",
+  cemas: "Tarik napas perlahan dan fokus pada satu hal yang bisa kamu lakukan sekarang.",
+  marah: "Beri dirimu waktu untuk tenang sebelum mengambil keputusan atau membalas perkataan orang lain.",
+  lelah: "Kamu boleh beristirahat. Pilih satu kebutuhan kecil yang bisa kamu penuhi sekarang.",
+  senang: "Nikmati momen baik ini dan simpan hal yang membuatmu merasa bersyukur.",
+  bingung: "Kamu tidak harus memiliki semua jawaban sekarang. Pecah masalah menjadi langkah-langkah kecil."
+};
+
+function renderStories() {
+  storyList.replaceChildren();
+  const stories = readStories();
+
+  if (stories.length === 0) {
+    const empty = document.createElement("p");
+    empty.textContent = "Belum ada cerita yang disimpan di perangkat ini.";
+    storyList.appendChild(empty);
+    return;
+  }
+
+  stories.slice().reverse().forEach(story => {
+    const article = document.createElement("article");
+    article.className = "story-item";
+
+    const heading = document.createElement("h3");
+    heading.textContent = `${story.alias} · ${story.mood}`;
+
+    const body = document.createElement("p");
+    body.textContent = story.text;
+
+    const date = document.createElement("p");
+    date.className = "note";
+    date.textContent = story.date;
+
+    const removeButton = document.createElement("button");
+    removeButton.className = "button secondary";
+    removeButton.textContent = "Hapus cerita";
+
+    removeButton.addEventListener("click", () => {
+      const remaining = readStories().filter(item => item.id !== story.id);
+      if (saveStories(remaining)) renderStories();
+    });
+
+    article.append(heading, body, date, removeButton);
+    storyList.appendChild(article);
+  });
+}
+
+storyForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const alias = document.getElementById("samaran").value.trim();
+  const mood = document.getElementById("mood").value;
+  const storyText = document.getElementById("ceritaText").value.trim();
+
+  if (!alias || !storyText) {
+    alert("Silakan isi nama samaran dan ceritamu.");
+    return;
+  }
+
+  // Pemeriksaan sederhana ini tidak menjamin semua informasi pribadi terdeteksi.
+  const sensitivePatterns = [
+    /\b[\w.+-]+@[\w.-]+\.[a-z]{2,}\b/i,
+    /\b(?:\+?62|0)\d[\d\s-]{7,}\d\b/,
+    /\b\d{9,}\b/i,
+    /\b(?:alamat rumah|nama lengkap|nomor telepon)\b/i
+  ];
+
+  if (sensitivePatterns.some(pattern => pattern.test(storyText))) {
+    alert("Cerita mungkin memuat informasi pribadi. Hapus informasi tersebut sebelum menyimpan.");
+    return;
+  }
+
+  const stories = readStories();
+
+  stories.push({
+    id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+    alias,
+    mood,
+    text: storyText,
+    date: new Date().toLocaleString("id-ID")
   });
 
-  quiz.hidden = true;
-  result.hidden = false;
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  if (!saveStories(stories)) return;
+
+  storyForm.reset();
+  storyResponse.replaceChildren();
+
+  const feedback = document.createElement("div");
+  feedback.className = "result good";
+
+  const message = document.createElement("p");
+  message.textContent = moodAdvice[mood];
+
+  const motivation = document.createElement("p");
+  motivation.textContent =
+    "💜 Terima kasih sudah memberi ruang bagi perasaanmu. Kamu layak didengarkan dan dihargai.";
+
+  feedback.append(message, motivation);
+  storyResponse.appendChild(feedback);
+  renderStories();
 });
 
-// ===== CETAK ATAU SIMPAN HASIL SEBAGAI PDF =====
-document.getElementById("printBtn").addEventListener("click", () => {
-  window.print();
+document.getElementById("hapusSemua").addEventListener("click", () => {
+  if (readStories().length === 0) return;
+
+  if (confirm("Hapus semua cerita yang tersimpan di browser ini?")) {
+    if (saveStories([])) renderStories();
+  }
 });
 
-// ===== MENGULANGI KUESIONER =====
-document.getElementById("restartBtn").addEventListener("click", () => {
-  quizForm.reset();
-  currentQuestions = [];
-  ageGroup.value = "";
-
-  result.hidden = true;
-  quiz.hidden = true;
-  welcome.hidden = false;
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
+// Tampilkan pertanyaan dan cerita ketika halaman dibuka.
+renderQuestions();
+renderStories();
