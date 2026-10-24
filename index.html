@@ -3,116 +3,139 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Ruang Diri - Kuesioner Kesehatan Mental</title>
-
-  <!-- Menghubungkan file CSS -->
+  <title>Ruang Diri | Kenali Perasaanmu</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header>
-    <div class="logo">🌿</div>
-    <h1>Ruang Diri</h1>
-    <p>Kenali perasaanmu, pahami dirimu.</p>
+  <header class="hero">
+    <div class="logo">🌷 Ruang Diri</div>
+    <p class="tagline">Tempat aman untuk mengenal dirimu sendiri.</p>
+    <h1>Tak apa untuk <span>tidak selalu baik-baik saja.</span></h1>
+    <p>Luangkan waktu sejenak untuk memahami perasaanmu, tanpa menghakimi diri sendiri.</p>
+    <a class="button" href="#fitur">Mulai mengenal diri →</a>
   </header>
 
-  <main>
-    <!-- Halaman awal -->
-    <section class="card" id="welcome">
-      <h2>Selamat datang di Ruang Diri 💜</h2>
+  <nav>
+    <a href="#beranda">Beranda</a>
+    <a href="#mindcheck">MindCheck</a>
+    <a href="#cerita">Ruang Cerita</a>
+    <a href="#bantuan">Pusat Bantuan</a>
+  </nav>
 
-      <p class="intro">
-        Ruang untuk merefleksikan emosi, pikiran, aktivitas,
-        dan kebutuhan dukunganmu.
-      </p>
+  <main id="beranda">
+    <section class="intro" id="fitur">
+      <p class="eyebrow">RUANG KECIL UNTUK DIRIMU</p>
+      <h2>Hari ini, apa yang kamu rasakan? 💜</h2>
+      <p>Kamu tidak harus memahami semuanya sekaligus. Mulailah dari langkah kecil.</p>
+    </section>
 
-      <label for="ageGroup">Pilih kelompok usiamu</label>
+    <section class="cards">
+      <article class="card">
+        <div class="emoji">🌱</div>
+        <h3>MindCheck</h3>
+        <p>Kenali kondisi emosionalmu melalui pertanyaan refleksi sederhana.</p>
+        <a class="button" href="#mindcheck">Mulai tes</a>
+      </article>
+      <article class="card">
+        <div class="emoji">💌</div>
+        <h3>Ruang Cerita</h3>
+        <p>Tuliskan isi pikiranmu menggunakan nama samaran.</p>
+        <a class="button" href="#cerita">Tulis cerita</a>
+      </article>
+      <article class="card">
+        <div class="emoji">🤝</div>
+        <h3>Pusat Bantuan</h3>
+        <p>Temukan pilihan bantuan ketika kamu membutuhkan dukungan.</p>
+        <a class="button" href="#bantuan">Cari bantuan</a>
+      </article>
+    </section>
 
-      <select id="ageGroup">
-        <option value="">-- Pilih kelompok usia --</option>
-        <option value="teen">15–18 tahun (SMA/SMK)</option>
-        <option value="adult">19–25 tahun (Kuliah/kerja)</option>
+    <section class="panel" id="mindcheck">
+      <p class="eyebrow">01 · KENALI DIRIMU</p>
+      <h2>🌱 MindCheck</h2>
+      <p>Tes refleksi ini membantu kamu melihat pengalaman emosional selama dua minggu terakhir. Tes ini bukan diagnosis medis.</p>
+
+      <label for="usia">Pilih kelompok usia</label>
+      <select id="usia">
+        <option value="15-18">Usia 15–18 tahun</option>
+        <option value="19-25">Usia 19–25 tahun</option>
       </select>
 
-      <div class="notice">
-        💡 Jawablah berdasarkan pengalamanmu selama 2 minggu terakhir.
-        Tidak ada jawaban benar atau salah. Kuesioner ini bukan alat
-        diagnosis kesehatan mental.
-      </div>
-
-      <button class="primary" id="startBtn">
-        Mulai Refleksi →
-      </button>
+      <div id="questions"></div>
+      <button class="button" id="submitTest">Lihat hasil refleksi</button>
+      <div id="hasil" aria-live="polite"></div>
     </section>
 
-    <!-- Halaman pertanyaan -->
-    <section class="card" id="quiz" hidden>
-      <h2 id="quizTitle">Kuesioner Refleksi Diri</h2>
+    <section class="panel" id="cerita">
+      <p class="eyebrow">02 · KELUARKAN ISI HATIMU</p>
+      <h2>💌 Ruang Cerita</h2>
+      <p>Tuliskan perasaanmu. Gunakan nama samaran dan hindari data pribadi seperti nama lengkap, alamat, nomor telepon, atau nama sekolah.</p>
 
-      <p class="small">
-        Jawab semua 15 pertanyaan untuk melihat ringkasan hasil.
-      </p>
+      <form id="storyForm">
+        <label for="samaran">Nama samaran</label>
+        <input id="samaran" maxlength="25" placeholder="Contoh: BintangSenja" required>
 
-      <div id="progressText">0 dari 15 pertanyaan dijawab</div>
+        <label for="mood">Perasaanmu sekarang</label>
+        <select id="mood" required>
+          <option value="sedih">Sedih</option>
+          <option value="cemas">Cemas atau gelisah</option>
+          <option value="marah">Kesal atau marah</option>
+          <option value="lelah">Lelah</option>
+          <option value="senang">Senang</option>
+          <option value="bingung">Bingung</option>
+        </select>
 
-      <div class="progress-track">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
+        <label for="ceritaText">Ceritakan yang kamu rasakan</label>
+        <textarea id="ceritaText" rows="5" maxlength="700"
+          placeholder="Tidak perlu sempurna. Tuliskan saja apa yang kamu rasakan..." required></textarea>
 
-      <form id="quizForm">
-        <div id="questions"></div>
-
-        <button class="primary" type="submit">
-          Lihat Hasil Saya ✨
-        </button>
+        <label class="check">
+          <input type="checkbox" id="privasi" required>
+          Saya tidak memasukkan informasi pribadi yang dapat mengidentifikasi diri saya.
+        </label>
+        <button class="button" type="submit">Simpan ceritaku 💜</button>
       </form>
+
+      <div id="responsCerita" aria-live="polite"></div>
+      <h3>Cerita yang tersimpan di perangkat ini</h3>
+      <div id="daftarCerita"></div>
+      <button class="button secondary" id="hapusSemua">Hapus semua cerita</button>
+      <p class="note">Privasi: cerita disimpan di browser perangkat ini, bukan dikirim ke server atau dibagikan kepada pengguna lain. Jangan gunakan fitur ini pada perangkat bersama jika kamu ingin menjaga privasi.</p>
     </section>
 
-    <!-- Halaman hasil -->
-    <section class="card" id="result" hidden>
-      <h2>Hasil Refleksi Dirimu 🌷</h2>
+    <section class="panel" id="bantuan">
+      <p class="eyebrow">03 · KAMU TIDAK SENDIRIAN</p>
+      <h2>🤝 Pusat Bantuan</h2>
+      <p>Meminta bantuan bukan tanda kelemahan. Kamu boleh mencari dukungan kapan pun dibutuhkan.</p>
 
-      <div class="result-top">
-        <div class="small">
-          Frekuensi pengalaman yang mengganggu
-        </div>
+      <article class="help-item">
+        <h3>🫂 Orang dewasa yang dipercaya</h3>
+        <p>Cobalah berbicara kepada orang tua, wali, guru BK, atau orang dewasa yang membuatmu merasa aman.</p>
+      </article>
+      <article class="help-item">
+        <h3>🏥 Tenaga kesehatan</h3>
+        <p>Psikolog, psikiater, atau Puskesmas dapat membantu jika perasaan sulit mengganggu kegiatan sehari-hari.</p>
+      </article>
+      <article class="help-item">
+        <h3>☎️ Dukungan emosional Indonesia</h3>
+        <p>Healing119.id menyediakan dukungan psikologis awal. Kunjungi situs resminya untuk pilihan layanan suara atau WhatsApp.</p>
+        <a href="https://healing119.id/" target="_blank" rel="noopener noreferrer">Kunjungi Healing119.id ↗</a>
+        <p>Untuk keadaan darurat medis di Indonesia, hubungi 119 atau mintalah orang terdekat membantu mencari pertolongan.</p>
+      </article>
+    </section>
 
-        <div class="result-number" id="percentage">0%</div>
-
-        <div id="status" class="result-badge green">
-          Hijau
-        </div>
-
-        <p id="summary"></p>
-      </div>
-
-      <h3>Hasil per kategori</h3>
-      <div id="categoryResults"></div>
-
-      <div class="notice" id="recommendation"></div>
-
-      <p class="small">
-        Hasil ini merupakan refleksi berdasarkan jawabanmu,
-        bukan diagnosis atau ukuran pasti kesehatan mental.
-        Kamu tetap boleh mencari dukungan kapan pun diperlukan.
-      </p>
-
-      <button class="secondary" id="printBtn">
-        Cetak / Simpan PDF
-      </button>
-
-      <button class="primary" id="restartBtn">
-        Ulangi Kuesioner
-      </button>
+    <section class="quote">
+      <p>“Kamu tidak harus menyelesaikan semuanya hari ini. Satu langkah kecil tetap berarti.”</p>
+      <span>💜 Pesan untuk dirimu</span>
     </section>
   </main>
 
   <footer>
-    🌱 Ruang Diri — Kamu berhak didengar, dipahami, dan mendapat dukungan.
+    <p>🌷 Ruang Diri © 2026</p>
+    <p>Kenali perasaanmu. Hargai prosesmu. Cari bantuan saat dibutuhkan.</p>
+    <p class="note">Website ini bukan pengganti diagnosis atau perawatan profesional.</p>
   </footer>
 
-  <!-- Menghubungkan file JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
