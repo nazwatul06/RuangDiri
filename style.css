@@ -386,3 +386,34 @@ footer .note {
     break-inside: avoid;
   }
 }
+/* FONT AESTHETIC RUANG DIRI */
+
+/* Font ramping dan artistik untuk judul utama */
+.logo,
+h1 {
+  font-family: 'Amatic SC', cursive;
+  font-weight: 700;
+}
+
+/* Font elegan untuk judul bagian */
+h2,
+h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Font tulisan elegan untuk kutipan */
+blockquote,
+.quote,
+.motivation-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+}
+
+/* Font yang bersih dan nyaman untuk isi */
+body,
+button,
+input,
+textarea,
+select {
+  font-family: 'DM Sans', sans-serif;
+}
