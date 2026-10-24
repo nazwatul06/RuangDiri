@@ -1,286 +1,312 @@
-/* ===== PENGATURAN DASAR ===== */
-:root {
-  --primary: #6558c9;
-  --soft: #f1efff;
-  --text: #292943;
-  --muted: #74748b;
-  --white: #ffffff;
+// ===== PILIHAN JAWABAN DAN SKOR =====
+const answers = [
+  { label: "Sering", score: 3 },
+  { label: "Beberapa kali", score: 2 },
+  { label: "Jarang", score: 1 },
+  { label: "Tidak pernah", score: 0 }
+];
+
+// ===== PERTANYAAN USIA 15–18 TAHUN =====
+const teenQuestions = [
+  { category: "Emosi dan suasana hati", text: "Saya merasa sedih atau kehilangan semangat tanpa alasan yang jelas." },
+  { category: "Emosi dan suasana hati", text: "Saya mudah marah atau tersinggung karena hal-hal kecil." },
+  { category: "Emosi dan suasana hati", text: "Saya merasa cemas atau gelisah saat menjalani aktivitas sehari-hari." },
+
+  { category: "Pikiran dan tekanan sekolah", text: "Saya merasa kewalahan menghadapi tugas, ujian, atau praktik sekolah." },
+  { category: "Pikiran dan tekanan sekolah", text: "Saya takut mengecewakan orang tua atau guru karena hasil belajar saya." },
+  { category: "Pikiran dan tekanan sekolah", text: "Saya membandingkan prestasi diri sendiri dengan pencapaian teman." },
+
+  { category: "Keluarga dan pertemanan", text: "Saya merasa tidak dipahami oleh keluarga atau teman." },
+  { category: "Keluarga dan pertemanan", text: "Saya merasa kesepian meskipun berada di tengah banyak orang." },
+  { category: "Keluarga dan pertemanan", text: "Saya takut menceritakan masalah karena khawatir akan dihakimi." },
+
+  { category: "Kepercayaan diri dan mengenali diri", text: "Saya merasa diri saya tidak cukup baik dibandingkan orang lain." },
+  { category: "Kepercayaan diri dan mengenali diri", text: "Saya kesulitan menerima kekurangan atau kesalahan diri sendiri." },
+
+  { category: "Tidur, energi, dan rutinitas", text: "Saya kesulitan tidur karena memikirkan berbagai masalah." },
+  { category: "Tidur, energi, dan rutinitas", text: "Saya merasa lelah atau sulit berkonsentrasi saat menjalani aktivitas." },
+
+  { category: "Menghadapi masalah dan dukungan", text: "Saya memendam masalah karena tidak tahu kepada siapa harus bercerita." },
+  { category: "Menghadapi masalah dan dukungan", text: "Saya kesulitan menenangkan diri ketika menghadapi masalah." }
+];
+
+// ===== PERTANYAAN USIA 19–25 TAHUN =====
+const adultQuestions = [
+  { category: "Emosional dan suasana hati", text: "Saya merasa sedih atau kehilangan semangat tanpa alasan yang jelas." },
+  { category: "Emosional dan suasana hati", text: "Saya merasa cemas atau khawatir secara berlebihan." },
+  { category: "Emosional dan suasana hati", text: "Saya mudah tersinggung ketika menghadapi tekanan." },
+
+  { category: "Masa depan dan tekanan kuliah/kerja", text: "Saya merasa tertekan ketika memikirkan masa depan." },
+  { category: "Masa depan dan tekanan kuliah/kerja", text: "Saya merasa tertinggal saat membandingkan pencapaian saya dengan orang lain." },
+  { category: "Masa depan dan tekanan kuliah/kerja", text: "Saya merasa kewalahan menghadapi tuntutan kuliah, pekerjaan, atau tanggung jawab lainnya." },
+
+  { category: "Keluarga dan pertemanan", text: "Saya merasa sulit menceritakan masalah kepada keluarga atau teman." },
+  { category: "Keluarga dan pertemanan", text: "Saya merasa kesepian meskipun memiliki hubungan sosial." },
+
+  { category: "Tidur, energi, dan respons tubuh", text: "Saya kesulitan tidur karena memikirkan berbagai masalah." },
+  { category: "Tidur, energi, dan respons tubuh", text: "Saya merasa kelelahan secara fisik atau mental meskipun sudah beristirahat." },
+
+  { category: "Strategi menghadapi masalah", text: "Saya menunda menyelesaikan masalah karena merasa kewalahan." },
+  { category: "Strategi menghadapi masalah", text: "Saya kesulitan menentukan langkah ketika menghadapi masalah yang rumit." },
+  { category: "Strategi menghadapi masalah", text: "Saya memendam emosi agar terlihat kuat di depan orang lain." },
+
+  { category: "Perasaan saat mendapat masalah", text: "Saya menyalahkan diri sendiri ketika sesuatu tidak berjalan sesuai rencana." },
+  { category: "Perasaan saat mendapat masalah", text: "Saya merasa kewalahan ketika beberapa masalah datang secara bersamaan." }
+];
+
+// ===== MENGAMBIL ELEMEN HTML =====
+const welcome = document.getElementById("welcome");
+const quiz = document.getElementById("quiz");
+const result = document.getElementById("result");
+const ageGroup = document.getElementById("ageGroup");
+const questionsBox = document.getElementById("questions");
+const quizForm = document.getElementById("quizForm");
+const progressText = document.getElementById("progressText");
+const progressBar = document.getElementById("progressBar");
+
+let currentQuestions = [];
+
+// ===== MEMBUAT TAMPILAN PERTANYAAN =====
+function renderQuestions() {
+  questionsBox.innerHTML = "";
+
+  const categories = [
+    ...new Set(currentQuestions.map(question => question.category))
+  ];
+
+  categories.forEach(category => {
+    const heading = document.createElement("h3");
+    heading.textContent = category;
+    questionsBox.appendChild(heading);
+
+    currentQuestions.forEach((question, index) => {
+      if (question.category !== category) return;
+
+      const questionBox = document.createElement("div");
+      questionBox.className = "question";
+
+      const questionText = document.createElement("p");
+      questionText.textContent = `${index + 1}. ${question.text}`;
+      questionBox.appendChild(questionText);
+
+      const optionsBox = document.createElement("div");
+      optionsBox.className = "options";
+
+      answers.forEach(answer => {
+        const label = document.createElement("label");
+        label.className = "option";
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = `q${index}`;
+        radio.value = answer.score;
+        radio.addEventListener("change", updateProgress);
+
+        const span = document.createElement("span");
+        span.textContent = answer.label;
+
+        label.appendChild(radio);
+        label.appendChild(span);
+        optionsBox.appendChild(label);
+      });
+
+      questionBox.appendChild(optionsBox);
+      questionsBox.appendChild(questionBox);
+    });
+  });
+
+  updateProgress();
 }
 
-* {
-  box-sizing: border-box;
+// ===== MEMPERBARUI PROGRES JAWABAN =====
+function updateProgress() {
+  const answered = currentQuestions.filter((_, index =>
+    document.querySelector(`input[name="q${index}"]:checked`)
+  )).length;
+
+  progressText.textContent =
+    `${answered} dari ${currentQuestions.length} pertanyaan dijawab`;
+
+  progressBar.style.width =
+    `${(answered / currentQuestions.length) * 100}%`;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  color: var(--text);
-  background: linear-gradient(135deg, #f3f1ff, #e8f6ff);
-  line-height: 1.6;
-}
-
-/* ===== HEADER ===== */
-header {
-  padding: 28px 16px;
-  text-align: center;
-  background: var(--white);
-  border-bottom: 1px solid #e9e6fb;
-}
-
-.logo {
-  font-size: 32px;
-}
-
-header h1 {
-  margin: 5px 0;
-  color: var(--primary);
-}
-
-header p {
-  margin: 0;
-  color: var(--muted);
-}
-
-/* ===== TATA LETAK ===== */
-main {
-  width: min(850px, 92%);
-  margin: 28px auto;
-}
-
-.card {
-  background: var(--white);
-  padding: 24px;
-  margin-bottom: 20px;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px #3d367410;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-.intro,
-.small {
-  color: var(--muted);
-}
-
-.small {
-  font-size: 13px;
-}
-
-/* ===== INPUT ===== */
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
-
-select {
-  width: 100%;
-  padding: 13px;
-  border: 1px solid #d8d5ed;
-  border-radius: 12px;
-  background: white;
-  font-size: 16px;
-  color: var(--text);
-}
-
-.notice {
-  background: #fff7df;
-  padding: 14px;
-  border-radius: 12px;
-  font-size: 14px;
-  margin: 18px 0;
-}
-
-/* ===== KARTU PERTANYAAN ===== */
-.question {
-  border: 1px solid #eceaf5;
-  padding: 17px;
-  border-radius: 14px;
-  margin: 14px 0;
-}
-
-.question p {
-  margin: 0 0 12px;
-  font-weight: 600;
-}
-
-.options {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 9px;
-}
-
-.option {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px;
-  border: 1px solid #e2e0f0;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: normal;
-  margin: 0;
-}
-
-.option:has(input:checked) {
-  border-color: var(--primary);
-  background: var(--soft);
-}
-
-input[type="radio"] {
-  accent-color: var(--primary);
-}
-
-/* ===== TOMBOL ===== */
-button {
-  border: none;
-  padding: 13px 20px;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
-}
-
-.primary {
-  color: white;
-  background: var(--primary);
-  width: 100%;
-  margin-top: 15px;
-}
-
-.secondary {
-  color: var(--primary);
-  background: var(--soft);
-  margin-top: 10px;
-}
-
-/* ===== INDIKATOR PROGRES ===== */
-.progress-track {
-  background: #e9e7f5;
-  height: 9px;
-  border-radius: 99px;
-  overflow: hidden;
-  margin: 12px 0;
-}
-
-.progress-bar {
-  height: 100%;
-  background: var(--primary);
-  width: 0%;
-  transition: width 0.2s;
-}
-
-/* ===== HASIL TES ===== */
-.result-top {
-  text-align: center;
-  padding: 18px;
-  border-radius: 16px;
-  background: #f5f4fc;
-}
-
-.result-number {
-  font-size: 46px;
-  font-weight: bold;
-  line-height: 1.3;
-}
-
-.result-badge {
-  display: inline-block;
-  padding: 6px 14px;
-  border-radius: 30px;
-  font-weight: bold;
-}
-
-.green {
-  color: #176b3a;
-  background: #dcf7e5;
-}
-
-.yellow {
-  color: #805b0a;
-  background: #fff0c5;
-}
-
-.red {
-  color: #a5293c;
-  background: #ffe1e5;
-}
-
-.category-result {
-  padding: 13px 0;
-  border-bottom: 1px solid #eeeaf6;
-}
-
-.category-result:last-child {
-  border-bottom: none;
-}
-
-.category-result .progress-track {
-  margin-bottom: 0;
-}
-
-.category-result .progress-bar {
-  background: var(--category-color, var(--primary));
-}
-
-/* ===== FOOTER ===== */
-footer {
-  text-align: center;
-  padding: 25px 15px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-/* Menyembunyikan bagian yang belum digunakan */
-[hidden] {
-  display: none !important;
-}
-
-/* ===== TAMPILAN HP ===== */
-@media (max-width: 480px) {
-  .card {
-    padding: 17px;
+// ===== MEMULAI KUESIONER =====
+document.getElementById("startBtn").addEventListener("click", () => {
+  if (!ageGroup.value) {
+    alert("Silakan pilih kelompok usia terlebih dahulu.");
+    return;
   }
 
-  .options {
-    grid-template-columns: 1fr;
+  currentQuestions = ageGroup.value === "teen"
+    ? teenQuestions
+    : adultQuestions;
+
+  document.getElementById("quizTitle").textContent =
+    ageGroup.value === "teen"
+      ? "Refleksi Diri Usia 15–18 Tahun"
+      : "Refleksi Diri Usia 19–25 Tahun";
+
+  welcome.hidden = true;
+  result.hidden = true;
+  quiz.hidden = false;
+
+  renderQuestions();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ===== MENGHITUNG DAN MENAMPILKAN HASIL =====
+quizForm.addEventListener("submit", event => {
+  event.preventDefault();
+
+  const scores = currentQuestions.map((_, index) => {
+    const selected = document.querySelector(
+      `input[name="q${index}"]:checked`
+    );
+
+    return selected ? Number(selected.value) : null;
+  });
+
+  if (scores.some(score => score === null)) {
+    alert("Silakan jawab semua 15 pertanyaan terlebih dahulu.");
+
+    const firstUnanswered = scores.findIndex(score => score === null);
+
+    document.querySelector(
+      `.question input[name="q${firstUnanswered}"]`
+    ).closest(".question").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+    return;
   }
 
-  header h1 {
-    font-size: 25px;
-  }
-}
+  const total = scores.reduce((sum, score) => sum + score, 0);
+  const maxScore = currentQuestions.length * 3;
+  const percentage = Math.round((total / maxScore) * 100);
 
-/* ===== CETAK HASIL ===== */
-@media print {
-  body {
-    background: white;
+  let colorClass;
+  let statusText;
+  let summaryText;
+  let recommendationText;
+
+  if (percentage <= 33) {
+    colorClass = "green";
+    statusText = "Hijau · Relatif jarang";
+
+    summaryText =
+      "Pengalaman yang mengganggu relatif jarang kamu laporkan. Tetap jaga keseimbangan dan rawat dirimu.";
+
+    recommendationText =
+      "🌱 Pertahankan rutinitas yang membantumu. Kamu tetap boleh mencari dukungan kapan pun membutuhkannya.";
+
+  } else if (percentage <= 66) {
+    colorClass = "yellow";
+    statusText = "Kuning · Perlu diperhatikan";
+
+    summaryText =
+      "Beberapa pengalaman mungkin cukup sering muncul. Cobalah mengenali pemicu dan kebutuhanmu.";
+
+    recommendationText =
+      "💛 Coba bicarakan perasaanmu dengan orang yang dipercaya. Pertimbangkan dukungan guru BK, konselor, atau tenaga profesional jika keseharianmu terganggu.";
+
+  } else {
+    colorClass = "red";
+    statusText = "Merah · Pertimbangkan dukungan";
+
+    summaryText =
+      "Kamu melaporkan cukup banyak pengalaman yang mengganggu. Kamu tidak harus menghadapinya sendirian.";
+
+    recommendationText =
+      "❤️ Pertimbangkan berbicara dengan orang tepercaya atau tenaga profesional. Jika merasa tidak aman, segera cari bantuan orang dewasa tepercaya atau layanan darurat setempat.";
   }
 
-  header,
-  footer,
-  #welcome,
-  #quiz,
-  #printBtn,
-  #restartBtn {
-    display: none !important;
-  }
+  document.getElementById("percentage").textContent =
+    `${percentage}%`;
 
-  main {
-    width: 100%;
-    margin: 0;
-  }
+  const status = document.getElementById("status");
+  status.className = `result-badge ${colorClass}`;
+  status.textContent = statusText;
 
-  .card {
-    box-shadow: none;
-  }
-}
+  document.getElementById("summary").textContent = summaryText;
+  document.getElementById("recommendation").textContent =
+    recommendationText;
+
+  // ===== HASIL PER KATEGORI =====
+  const categoryResults = document.getElementById("categoryResults");
+  categoryResults.innerHTML = "";
+
+  const categories = [
+    ...new Set(currentQuestions.map(question => question.category))
+  ];
+
+  categories.forEach(category => {
+    const indices = currentQuestions
+      .map((question, index) =>
+        question.category === category ? index : -1
+      )
+      .filter(index => index !== -1);
+
+    const categoryScore = indices.reduce(
+      (sum, index) => sum + scores[index], 0
+    );
+
+    const categoryMax = indices.length * 3;
+    const categoryPercent = Math.round(
+      (categoryScore / categoryMax) * 100
+    );
+
+    const row = document.createElement("div");
+    row.className = "category-result";
+
+    const title = document.createElement("strong");
+    title.textContent = category;
+
+    const percent = document.createElement("span");
+    percent.textContent = ` — ${categoryPercent}%`;
+
+    const track = document.createElement("div");
+    track.className = "progress-track";
+
+    const bar = document.createElement("div");
+    bar.className = "progress-bar";
+    bar.style.width = `${categoryPercent}%`;
+
+    if (categoryPercent <= 33) {
+      bar.style.background = "#27945b";
+    } else if (categoryPercent <= 66) {
+      bar.style.background = "#d9a02d";
+    } else {
+      bar.style.background = "#d84859";
+    }
+
+    track.appendChild(bar);
+    row.appendChild(title);
+    row.appendChild(percent);
+    row.appendChild(track);
+    categoryResults.appendChild(row);
+  });
+
+  quiz.hidden = true;
+  result.hidden = false;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+// ===== CETAK ATAU SIMPAN HASIL SEBAGAI PDF =====
+document.getElementById("printBtn").addEventListener("click", () => {
+  window.print();
+});
+
+// ===== MENGULANGI KUESIONER =====
+document.getElementById("restartBtn").addEventListener("click", () => {
+  quizForm.reset();
+  currentQuestions = [];
+  ageGroup.value = "";
+
+  result.hidden = true;
+  quiz.hidden = true;
+  welcome.hidden = false;
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
