@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RUANG DIRI | Kenali Dirimu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <a href="#beranda" class="logo">☁ RUANG<span>DIRI</span></a>
+    <nav>
+      <a href="#beranda">Beranda</a>
+      <a href="#tes">Mind Check</a>
+      <a href="#mood">Mood</a>
+      <a href="#jurnal">Jurnal</a>
+      <a href="#cerita">Cerita</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="beranda" class="hero">
+      <div class="hero-text">
+        <span class="label">♡ RUANG AMAN UNTUK BERTUMBUH</span>
+        <h1>Pelan-pelan,<br>kita <span>pahami diri.</span></h1>
+        <p>
+          Kenali perasaanmu, tuliskan isi pikiranmu,
+          dan temukan langkah kecil untuk merawat diri.
+          Kamu tidak harus menghadapi semuanya sendirian.
+        </p>
+        <a href="#tes" class="btn">Mulai mengenal diri →</a>
+      </div>
+      <div class="hero-art">
+        <div class="sun">☀️</div>
+        <div class="cloud">☁️</div>
+        <div class="heart">♡</div>
+        <p>Hari ini adalah awal yang baru ✨</p>
+      </div>
+    </section>
+
+    <section class="features">
+      <h2>Ruang kecil untukmu 🌷</h2>
+      <p class="subtitle">Pilih apa yang kamu butuhkan hari ini.</p>
+      <div class="feature-grid">
+        <a href="#tes" class="feature purple">
+          <span>🧠</span><h3>Mind Check</h3>
+          <p>Kenali perasaanmu melalui refleksi sederhana.</p>
+        </a>
+        <a href="#mood" class="feature green">
+          <span>🌤️</span><h3>Mood Tracker</h3>
+          <p>Catat suasana hatimu setiap hari.</p>
+        </a>
+        <a href="#jurnal" class="feature peach">
+          <span>📔</span><h3>My Journal</h3>
+          <p>Tulis cerita dan pikiranmu secara pribadi.</p>
+        </a>
+        <a href="#cerita" class="feature blue">
+          <span>💬</span><h3>Cerita Ruang</h3>
+          <p>Ungkapkan cerita menggunakan nama samaran.</p>
+        </a>
+      </div>
+    </section>
+
+    <section id="tes" class="section">
+      <span class="label">01 · KENALI DIRIMU</span>
+      <h2>Bagaimana perasaanmu belakangan ini?</h2>
+      <p class="subtitle">
+        Jawab sesuai pengalamanmu selama dua minggu terakhir.
+        Ini adalah refleksi edukatif, bukan diagnosis.
+      </p>
+
+      <form id="quizForm" class="panel">
+        <div id="questions"></div>
+        <button class="btn" type="submit">Lihat hasil refleksi ♡</button>
+        <button class="btn secondary" type="reset">Ulangi tes</button>
+      </form>
+
+      <div id="result" class="result hidden" aria-live="polite"></div>
+    </section>
+
+    <section id="mood" class="section tinted">
+      <span class="label">02 · SADARI PERASAANMU</span>
+      <h2>Cuaca hati hari ini ☁️</h2>
+      <p class="subtitle">Pilih suasana hati yang paling mendekati.</p>
+
+      <div class="panel">
+        <div class="moods">
+          <button type="button" data-mood="Senang">☀️<small>Senang</small></button>
+          <button type="button" data-mood="Tenang">🌿<small>Tenang</small></button>
+          <button type="button" data-mood="Biasa saja">☁️<small>Biasa saja</small></button>
+          <button type="button" data-mood="Cemas">🌧️<small>Cemas</small></button>
+          <button type="button" data-mood="Sedih">🌦️<small>Sedih</small></button>
+          <button type="button" data-mood="Lelah">🌙<small>Lelah</small></button>
+        </div>
+        <label for="moodNote">Catatan (opsional)</label>
+        <textarea id="moodNote" placeholder="Apa yang kamu rasakan hari ini?"></textarea>
+        <button id="saveMood" class="btn" type="button">Simpan mood</button>
+        <div id="moodHistory"></div>
+      </div>
+    </section>
+
+    <section id="jurnal" class="section">
+      <span class="label">03 · TUMPAHKAN ISI PIKIRAN</span>
+      <h2>Semua perasaanmu layak didengarkan. ♡</h2>
+      <p class="subtitle">
+        Tulis tanpa perlu takut salah memilih kata.
+      </p>
+
+      <form id="journalForm" class="panel">
+        <label for="journalTitle">Judul catatan</label>
+        <input id="journalTitle" maxlength="80"
+          placeholder="Contoh: Hari yang cukup berat" required>
+
+        <label for="journalText">Ceritamu</label>
+        <textarea id="journalText" rows="6" maxlength="5000"
+          placeholder="Hari ini aku merasa..." required></textarea>
+
+        <button class="btn" type="submit">Simpan catatan ♡</button>
+        <p class="privacy">🔒 Catatan disimpan di browser perangkat ini.</p>
+      </form>
+      <div id="journalList"></div>
+    </section>
+
+    <section class="section tinted" id="motivasi">
+      <span class="label">04 · SELF-GROWTH</span>
+      <h2>Langkah kecil untuk merawat diri 🌱</h2>
+      <div class="feature-grid">
+        <article class="feature green">
+          <span>🌬️</span><h3>Ambil jeda</h3>
+          <p>Berhenti sebentar dan bernapas perlahan jika terasa nyaman.</p>
+        </article>
+        <article class="feature peach">
+          <span>🫶</span><h3>Sayangi dirimu</h3>
+          <p>Kamu boleh belajar dan melakukan kesalahan.</p>
+        </article>
+        <article class="feature blue">
+          <span>🌿</span><h3>Rawat kebutuhanmu</h3>
+          <p>Jaga makan, tidur, istirahat, dan rutinitas harian.</p>
+        </article>
+        <article class="feature purple">
+          <span>🤝</span><h3>Berani meminta bantuan</h3>
+          <p>Bicaralah dengan orang tepercaya jika membutuhkan dukungan.</p>
+        </article>
+      </div>
+      <div class="panel affirmation">
+        <p id="affirmation">Aku boleh bertumbuh dengan ritmeku sendiri.</p>
+        <button id="newAffirmation" class="btn">Motivasi lainnya ✨</button>
+      </div>
+    </section>
+
+    <section id="cerita" class="section">
+      <span class="label">05 · CERITA RUANG</span>
+      <h2>Ingin bercerita? 💬</h2>
+      <p class="subtitle">
+        Gunakan nama samaran dan jangan tuliskan informasi
+        pribadi yang bisa mengungkap identitasmu.
+      </p>
+
+      <form id="storyForm" class="panel">
+        <label for="alias">Nama samaran</label>
+        <input id="alias" maxlength="30" placeholder="Contoh: AwanSenja" required>
+
+        <label for="storyText">Ceritamu</label>
+        <textarea id="storyText" rows="5" maxlength="1200"
+          placeholder="Belakangan ini aku merasa..." required></textarea>
+
+        <label class="check">
+          <input id="shareStory" type="checkbox">
+          Tampilkan di daftar cerita demo pada perangkat ini.
+        </label>
+
+        <button class="btn" type="submit">Simpan cerita ♡</button>
+        <p class="privacy">
+          Mode demo: cerita tidak dikirim ke internet dan tidak dibaca konselor.
+        </p>
+      </form>
+      <div id="storyList"></div>
+    </section>
+
+    <section class="help">
+      <h2>Kamu tidak harus sendirian. 🫶</h2>
+      <p>
+        Jika perasaan sulit berlangsung lama atau mengganggu aktivitas,
+        cobalah berbicara dengan orang dewasa tepercaya, guru BK,
+        psikolog, atau tenaga kesehatan.
+      </p>
+      <a class="btn" href="https://www.healing119.id/"
+         target="_blank" rel="noopener noreferrer">
+        Cari informasi bantuan ↗
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <a href="#beranda" class="logo">☁ RUANG<span>DIRI</span></a>
+    <p>Kenali dirimu, pahami perasaanmu, tumbuh menjadi lebih baik.</p>
+    <small>Prototipe edukasi, bukan alat diagnosis kesehatan mental.</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
