@@ -417,3 +417,155 @@ textarea,
 select {
   font-family: 'DM Sans', sans-serif;
 }
+
+/* ===== RUANG DIRI AI REASONING ===== */
+
+.ai-section {
+  max-width: 760px;
+  margin: 48px auto;
+  padding: 30px;
+  border: 1px solid #dce7f2;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #fff9e8, #edf6ff);
+  color: #263b50;
+  box-shadow: 0 12px 35px rgba(65, 100, 140, 0.10);
+}
+
+.ai-heading {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.ai-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  background: #dcecff;
+  color: #416f9f;
+  font-size: 28px;
+}
+
+.ai-label {
+  color: #6284a7;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.ai-heading h2 {
+  margin: 10px 0;
+  font-size: clamp(25px, 4vw, 34px);
+}
+
+.ai-heading p {
+  line-height: 1.7;
+}
+
+.ai-section label {
+  display: block;
+  margin: 20px 0 8px;
+  font-weight: 700;
+}
+
+.ai-section select,
+.ai-section textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 15px;
+  border: 1px solid #cbdbea;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #263b50;
+  font: inherit;
+}
+
+.ai-section textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+
+.ai-section select:focus,
+.ai-section textarea:focus {
+  outline: 3px solid #d7e8ff;
+  border-color: #719bca;
+}
+
+.privacy-note,
+.ai-disclaimer {
+  color: #64778a;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.ai-section button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background: #648fc4;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.ai-section button:hover {
+  background: #4c78ad;
+  transform: translateY(-2px);
+}
+
+.ai-output {
+  margin-top: 28px;
+  padding: 23px;
+  border: 1px solid #d6e4ef;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.88);
+  overflow-wrap: anywhere;
+}
+
+.ai-output h3 {
+  color: #416f9f;
+  margin-top: 0;
+}
+
+.ai-output h4 {
+  margin-bottom: 7px;
+  color: #526f8e;
+}
+
+.ai-output p,
+.ai-output li {
+  line-height: 1.8;
+}
+
+.ai-output li {
+  margin-bottom: 10px;
+}
+
+.ai-result-note {
+  padding: 12px;
+  border-radius: 10px;
+  background: #fff5d9;
+  font-size: 13px;
+}
+
+.ai-disclaimer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .ai-section {
+    margin: 24px 12px;
+    padding: 20px;
+  }
+
+  .ai-output {
+    padding: 16px;
+  }
+}
