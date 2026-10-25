@@ -226,7 +226,7 @@ document.getElementById("submitTest").addEventListener("click", () => {
 
   const motivation = document.createElement("p");
   motivation.textContent =
-    "💜 Kamu tidak harus menyelesaikan semuanya hari ini. Langkah kecil untuk merawat diri tetap berarti.";
+    "💜 Jika kamu tidak tau apa yang harus dikejar saat ini, kejarlah dirimu sendiri, berusahalah menjadi versi dirimu yang paling sehat, paling bahagia, dan paling percaya diri";
 
   const disclaimer = document.createElement("p");
   disclaimer.className = "note";
