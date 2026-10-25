@@ -1,419 +1,242 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+/* =================================
+   RUANG DIRI — PASTEL THEME
+   Kuning pastel + biru soft
+================================= */
 
 :root {
-  --purple: #7654c8;
-  --dark: #30264b;
-  --lavender: #eee8ff;
-  --pink: #ffe5ed;
-  --mint: #e0f6eb;
-  --background: #faf8ff;
-  --white: #ffffff;
-  --text: #504960;
-  --border: #e8e1f2;
+  --ink: #26384d;
+  --muted: #68798d;
+  --purple: #648fc4;
+  --purple-dark: #416f9f;
+  --lilac: #e8f2ff;
+  --coral: #f4b8a5;
+  --orange: #f6d987;
+  --mint: #cde9df;
+  --sky: #b9d9f5;
+  --paper: #fffef8;
+  --line: #dce8f4;
+  --shadow: 0 18px 55px rgba(77, 117, 157, 0.12);
 }
 
-* {
-  box-sizing: border-box;
-  scroll-behavior: smooth;
-}
-
+/* Latar utama */
 body {
-  margin: 0;
-  background: var(--background);
-  color: var(--text);
-  font-family: "DM Sans", sans-serif;
-  line-height: 1.7;
+  background: #fffdf4;
+  color: var(--ink);
 }
 
-h1, h2, h3 {
-  color: var(--dark);
-  font-family: "Plus Jakarta Sans", sans-serif;
-  line-height: 1.3;
+/* Dekorasi latar */
+.ambient-one {
+  background: #f8e7a8;
 }
 
-h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+.ambient-two {
+  background: #b9dcf8;
 }
 
-h2 {
-  font-size: clamp(1.6rem, 4vw, 2.2rem);
+/* Logo */
+.brand-mark {
+  background: linear-gradient(145deg, #8bb9e8, #c5ddf5);
+  color: #284d75;
+  box-shadow: 0 8px 20px #8bb9e844;
 }
 
-.hero {
-  padding: 65px 20px 80px;
-  text-align: center;
-  background: linear-gradient(135deg, #eee8ff, #ffe8ef, #e1f7ec);
+.brand-accent,
+.eyebrow,
+.hero h1 span,
+.page-intro h1 span {
+  color: #5f8fc3;
 }
 
-.logo {
-  color: var(--purple);
-  font-size: 1.5rem;
-  font-weight: 800;
+/* Navigasi */
+.nav-link:hover,
+.nav-link.active {
+  background: #e6f1ff;
+  color: #416f9f;
 }
 
-.tagline {
-  color: #706482;
+.menu-toggle {
+  background: #e8f2ff;
+  color: #416f9f;
 }
 
+/* Judul utama */
 .hero h1 {
-  max-width: 780px;
-  margin: 28px auto 16px;
+  color: #26384d;
 }
 
-.hero h1 span {
-  color: var(--purple);
+.hero h1 span::after {
+  background: #f8e7a8;
 }
 
-.hero > p:not(.tagline) {
-  max-width: 650px;
-  margin: 0 auto 28px;
+/* Tombol */
+.btn-primary {
+  background: linear-gradient(135deg, #82b3e5, #5e91c7);
+  color: #173653;
+  box-shadow: 0 10px 22px #6b9bc733;
 }
 
-.button {
-  display: inline-block;
-  border: none;
-  border-radius: 14px;
-  padding: 12px 20px;
-  background: var(--purple);
-  color: white;
-  font: inherit;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.2s, opacity 0.2s;
+.btn-primary:hover {
+  box-shadow: 0 13px 28px #6b9bc744;
 }
 
-.button:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
+.btn-light {
+  color: #416f9f;
+  border-color: #d7e6f6;
 }
 
-.secondary {
-  background: #e9e2f7;
-  color: var(--dark);
+.btn-outline {
+  border-color: #c5d9ee;
+  color: #416f9f;
 }
 
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px 26px;
-  padding: 14px;
-  background: rgba(255, 255, 255, 0.95);
-  border-bottom: 1px solid var(--border);
+/* Kartu fitur */
+.feature-mind {
+  background: linear-gradient(145deg, #e5f1ff, #d7e9ff);
 }
 
-nav a {
-  color: var(--dark);
-  text-decoration: none;
-  font-size: 0.92rem;
-  font-weight: 700;
+.feature-story {
+  background: linear-gradient(145deg, #fff6d9, #ffedbd);
 }
 
-nav a:hover {
-  color: var(--purple);
+.feature-help {
+  background: linear-gradient(145deg, #e6f4ed, #d8edf8);
 }
 
-main {
-  width: min(1080px, 92%);
-  margin: auto;
+.feature-kicker {
+  color: #587da5;
 }
 
-.intro {
-  max-width: 720px;
-  margin: 65px auto 30px;
-  text-align: center;
+.text-link {
+  color: #4f82b8;
 }
 
-.eyebrow {
-  color: var(--purple);
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 2px;
+/* Kutipan motivasi */
+.quote-banner {
+  background: linear-gradient(115deg, #dcecff, #fff0c5);
+  color: #2c4662;
 }
 
-.cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin: 35px 0 60px;
+.quote-mark {
+  color: #d5aa3c;
 }
 
-.card, .panel {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: 0 10px 35px rgba(64, 43, 98, 0.05);
+.quote-banner small {
+  color: #627991;
 }
 
-.card {
-  transition: transform 0.2s;
+.quote-flower {
+  color: #7da9d6;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.emoji {
-  display: grid;
-  place-items: center;
-  width: 60px;
-  height: 60px;
-  border-radius: 18px;
-  background: var(--lavender);
-  font-size: 1.8rem;
-}
-
-.card:nth-child(2) .emoji {
-  background: var(--pink);
-}
-
-.card:nth-child(3) .emoji {
-  background: var(--mint);
-}
-
-.card .button {
-  margin-top: 8px;
-}
-
+/* Form dan kolom input */
 .panel {
-  margin: 30px 0;
-  padding: clamp(22px, 5vw, 42px);
-  scroll-margin-top: 90px;
+  border-color: #e5edf5;
 }
 
-label {
-  display: block;
-  margin: 18px 0 8px;
-  color: var(--dark);
-  font-weight: 700;
-}
-
-input:not([type="checkbox"]),
 select,
+input[type="text"],
+input:not([type]),
 textarea {
-  width: 100%;
-  border: 1px solid #dcd2eb;
-  border-radius: 12px;
-  padding: 13px 14px;
-  background: #fff;
-  color: var(--text);
-  font: inherit;
+  border-color: #d7e3ef;
+  background: #fffefa;
+  color: var(--ink);
 }
 
-textarea {
-  resize: vertical;
+select:focus,
+input:focus,
+textarea:focus {
+  border-color: #83b0df;
+  box-shadow: 0 0 0 3px #83b0df2b;
 }
 
-input:focus, select:focus, textarea:focus {
-  outline: 3px solid #e4d9ff;
-  border-color: var(--purple);
+/* Tes refleksi */
+.answer-key {
+  background: #fff5d8;
 }
 
-.question {
-  margin: 20px 0;
-  padding: 20px;
-  background: #faf8ff;
-  border: 1px solid var(--border);
-  border-radius: 16px;
+.answer-key > span {
+  color: #b58b27;
 }
 
-.question p {
-  margin-top: 0;
-  font-weight: 700;
-  color: var(--dark);
+.question-count {
+  background: #e6f1ff;
+  color: #416f9f;
 }
 
-.options {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.progress-track {
+  background: #e6edf5;
 }
 
-.options label, .check {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-  padding: 8px 12px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  cursor: pointer;
-  font-weight: 500;
+.progress-bar {
+  background: linear-gradient(90deg, #f2d77f, #82b5e8);
 }
 
-input[type="radio"], input[type="checkbox"] {
-  accent-color: var(--purple);
+.question-category {
+  color: #5f8fc3;
 }
 
-#submitTest, #storyForm button {
-  margin-top: 22px;
+.option:has(input:checked) {
+  border-color: #83b0df;
+  background: #e8f2ff;
+  color: #345f8a;
 }
 
-#hasil, #responsCerita {
-  margin-top: 25px;
+.option input {
+  accent-color: #648fc4;
 }
 
-.result {
-  padding: 24px;
-  border-radius: 18px;
-  background: #f4efff;
+/* Hasil tes */
+.score-card {
+  background: linear-gradient(120deg, #e7f2ff, #fff5d8);
 }
 
-.result.good {
-  background: #e2f7e9;
+.score-orb {
+  background: conic-gradient(
+    #83b5e7 0deg,
+    #f3d67d 180deg,
+    #e6edf5 180deg
+  );
 }
 
-.result.medium {
-  background: #fff3d5;
+.recommendation-box {
+  background: #fff8df;
 }
 
-.result.high {
-  background: #ffe5e5;
+.motivation-card {
+  background: #e5f1ff;
 }
 
-.progress {
-  height: 12px;
-  overflow: hidden;
-  background: #e6e0ef;
-  border-radius: 99px;
+/* Pusat bantuan */
+.help-purple,
+.help-blue {
+  background: #e6f1ff;
 }
 
-.progress span {
-  display: block;
-  height: 100%;
-  background: var(--purple);
-  border-radius: 99px;
+.help-orange {
+  background: #fff3d2;
 }
 
-.help-item, .story-item {
-  padding: 20px;
-  margin-top: 16px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: #fcfbff;
+.help-green {
+  background: #e5f4eb;
 }
 
-.help-item a {
-  color: var(--purple);
-  font-weight: 700;
+.example-sentence {
+  background: #ffffffb8;
 }
 
-.story-item p {
-  overflow-wrap: anywhere;
-  white-space: pre-wrap;
+/* Catatan dan footer */
+.soft-note {
+  background: linear-gradient(145deg, #fff3cf, #e6f2ff);
 }
 
-.story-item button {
-  margin-top: 8px;
+.site-footer {
+  border-color: #e3eaf1;
 }
 
-.note {
-  color: #786f86;
-  font-size: 0.86rem;
-}
-
-.quote {
-  margin: 55px 0;
-  padding: 40px 24px;
-  text-align: center;
-  background: linear-gradient(135deg, var(--lavender), var(--pink));
-  border-radius: 24px;
-}
-
-.quote p {
-  color: var(--dark);
-  font-size: 1.3rem;
-  font-weight: 700;
-}
-
-footer {
-  padding: 35px 20px;
-  background: #30264b;
-  color: #eee8ff;
-  text-align: center;
-}
-
-footer p {
-  margin: 6px 0;
-}
-
-footer .note {
-  color: #d4c9e8;
-}
-
-@media (max-width: 760px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    padding: 45px 18px 60px;
-  }
-
-  nav {
-    gap: 8px 16px;
-  }
-
-  nav a {
-    font-size: 0.82rem;
-  }
-
-  .card, .panel {
-    border-radius: 18px;
-  }
-
-  .options {
-    flex-direction: column;
-  }
-}
-
-@media print {
-  nav, .hero .button, #storyForm, #hapusSemua, footer {
-    display: none;
-  }
-
-  body {
-    background: white;
-  }
-
-  .panel {
-    box-shadow: none;
-    break-inside: avoid;
-  }
-}
-/* FONT AESTHETIC RUANG DIRI */
-
-/* Font ramping dan artistik untuk judul utama */
-.logo,
-h1 {
-  font-family: 'Amatic SC', cursive;
-  font-weight: 700;
-}
-
-/* Font elegan untuk judul bagian */
-h2,
-h3 {
-  font-family: 'Playfair Display', serif;
-}
-
-/* Font tulisan elegan untuk kutipan */
-blockquote,
-.quote,
-.motivation-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-}
-
-/* Font yang bersih dan nyaman untuk isi */
-body,
-button,
-input,
-textarea,
-select {
-  font-family: 'DM Sans', sans-serif;
+/* Fokus aksesibilitas */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #83b5e7;
+  outline-offset: 3px;
 }
