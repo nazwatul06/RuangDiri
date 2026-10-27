@@ -3,46 +3,46 @@ const questionGroups = {
     {
       category: "Emosi dan suasana hati",
       questions: [
-        "Merasa sedih atau kehilangan semangat.",
-        "Suasana hati berubah dan sulit dipahami.",
-        " Tiba tiba merasa khawatir atau gelisah."
+        "Suasana hati berubah drastis tanpa sebab",
+        "Senyum dan tawa menjadi cara untuk menyembunyikan perasaan yang sebenarnya (seperti sedih atau kecewa)",
+        "Merasa kosong atau kehilangan semangat meskipun tidak sedang mengalami masalah besar"
       ]
     },
     {
       category: "Pikiran dan tekanan sekolah",
       questions: [
-        "Merasa terbebani oleh tugas atau nilai sekolah.",
-        "Sulit berkonsentrasi saat belajar atau ke distract karena masalah pribadi yang belum selesai.",
-        "Terlalu memikirkan kesalahan dan kegagalan."
+        "Takut mengecewakan orang lain lebih besar daripada keinginan untuk membahagiakan diri sendiri",
+        "Merasa tertinggal ketika melihat pencapaian teman, meskipun sudah berusaha",
+        "Pikiran tentang masa depan mengganggu ketenangan saat ini"
       ]
     },
     {
       category: "Keluarga dan teman",
       questions: [
         "Merasa tidak mendapat support system dari keluarga.",
-        "Merasa kesepian dan tidak memiliki siapa siapa.",
-        "Konflik dengan keluarga atau teman sangat mengganggu pikiran."
+        "Memilih diam karna takut perasaan perasaan atau pendapat justru menjadi sumber masalah",
+        "Merasa harus menjadi orang yang kuat agar tidak merepotkan orang lain"
       ]
     },
     {
       category: "Kepercayaan diri",
       questions: [
-        "Sering membandingkan diri dengan orang lain.",
-        "Merasa kurang berharga atau tidak cukup baik."
+        "Meragukan kemampuan diri sebelum benar benar mencoba sesuatu",
+        "Merasa nilai diri bergantung pada pujian, pencapaian, atau pengakuan orang lain"
       ]
     },
     {
       category: "Tidur dan energi",
       questions: [
-        "Pola tidur terganggu karena belajar larut malam.",
-        "Merasa lelah meskipun sudah beristirahat."
+        "Tubuh terasa lelah tetapi pikiran tetap sulit beristirahat",
+        "Kehilangan energi untuk melakukan hal yang biasanya terasa menyenangkan"
       ]
     },
     {
       category: "Cara menghadapi masalah",
       questions: [
-        "Sulitan bercerita kepada orang yang dipercaya.",
-        "Merasa pikiran menjadi berat padahal tidak sedang mengalami masalah."
+        "Memilih memendam masalah sampai terasa lebih berat daripada yang seharusnya",
+        "Sulit meminta bantuan kepada orang lain saat menghadapi masalah meskipun saat benar benar membutuhkan"
       ]
     }
   ],
@@ -51,46 +51,46 @@ const questionGroups = {
     {
       category: "Emosi dan suasana hati",
       questions: [
-        "Merasa semua orang terlihat menyebalkan saat sedang lelah.",
-        "Cemas atau gelisah tanpa sebab.",
-        "Kesulitan mengontrol emosi."
+        "Merasa lelah secara emosional tanpa tahu apa yang sebenarnya menguras energi",
+        "Merasa hidup berjalan seperti biasa, tetapi ada bagian diri yang terasa hampa",
+        "Berpura-pura baik-baik saja agar tidak perlu menjelaskan perasaan yang sulit dipahami"
       ]
     },
     {
       category: "Tekanan masa depan, kuliah, atau kerja",
       questions: [
-        "Memaksa diri untuk bisa melakukan semua hal.",
-        "Khawatir tentang masa depan.",
-        "Merasa harus selalu berhasil memenuhi harapan orang lain."
+        "Merasa tertinggal ketika melihat orang lain tampak lebih maju dalam hidupnya",
+        "Takut memilih jalan yang salah hingga sulit menikmati proses yang sedang dijalani",
+        "Merasa harus segera berhasil karna khawatir mengecewakan keluarga atau orang terdekat"
       ]
     },
     {
       category: "Keluarga dan pertemanan",
       questions: [
-        "Merasa tidak dipahami orang terdekat.",
-        "Merasa tidak mendapat support system.",
-        "Konflik hubungan mengganggu ketenangan."
+        "Merasa harus memenuhi harapan keluarga meskipun bertentangan dengan keinginan pribadi",
+        "Merasa kesepian meskipun masih memiliki orang-orang yang bisa diajak bicara",
+        "Menahan pendapat atau perasaan demi menjaga hubungan agar tidak berubah"
       ]
     },
     {
-      category: "Tidur dan respons tubuh",
+      category: "Tidur dan energi",
       questions: [
-        "Pola tidur saya terganggu karna bekerja atau belajar larut malam.",
-        "Selalu merasa lelah meskipun sudah beristirahat."
+        "Pikiran berat tentang hari ini membuat tidur terasa tidak menenangkan",
+        "Kehilangan semangat melakukan hal yang biasanya memberi kebahagiaan"
       ]
     },
     {
-      category: "Cara menghadapi masalah",
+      category: "Cara dan perasaan menghadapi masalah",
       questions: [
-        "Kesulitan mencari dukungan saat menghadapi masalah.",
-        "Merasa kewalahan menghadapi kegiatan sehari-hari."
+        "Mmemilih mnyelesaikan semuanya sendiri karena merasa tidak ingin mejadi beban bagi orang lain",
+        "Ketika menghadap asalah, seberapa sering kesulitan menerima bahwa diri sendiri juga membutuhkan dukungan"
       ]
     },
     {
-      category: "Perasaan saat menghadapi masalah",
+      category: "Masalah diri",
       questions: [
-        "Sering menyalahkan diri sendiri.",
-        "Merasa sulit menemukan hal yang membuat saya bersemangat."
+        "Mempertanyakan nilai diri saat pencapaian tidak sesuai dengan harapan",
+        "Kehilangan arah karena terlalu lama menjalani hidup berdasarkan ekspektasi orang lain"
       ]
     }
   ]
@@ -180,17 +180,17 @@ document.getElementById("submitTest").addEventListener("click", () => {
   let recommendation;
 
   if (percentage <= 33) {
-    category = "Hijau — skor refleksi relatif rendah";
+    category = "Kondisi Emosional Positif";
     className = "good";
     recommendation =
       "Pertahankan kebiasaan yang mendukung kesejahteraanmu. Tetap beri ruang untuk beristirahat, bercerita, dan menjaga hubungan yang sehat.";
   } else if (percentage <= 66) {
-    category = "Kuning — perlu perhatian";
+    category = "Perlu Ruang Untuk Diri Sendiri";
     className = "medium";
     recommendation =
-      "Cobalah mengenali hal yang paling membebani pikiranmu. Atur waktu istirahat, lakukan kegiatan yang menenangkan, dan pertimbangkan berbicara dengan orang yang kamu percaya.";
+      "Cobalah mengenali hal yang paling membebani pikiranmu. Atur waktu istirahat, dan lakukan kegiatan yang menenangkan";
   } else {
-    category = "Merah — perlu dukungan lebih";
+    category = "Sedang Mengalami Tekanan Emosional";
     className = "high";
     recommendation =
       "Kamu layak mendapatkan dukungan. Pertimbangkan untuk berbicara dengan orang dewasa yang dipercaya, guru BK, psikolog, atau tenaga kesehatan.";
