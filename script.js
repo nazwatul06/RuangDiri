@@ -12,22 +12,22 @@ const questionGroups = {
       category: "Pikiran dan tekanan sekolah",
       questions: [
         "Takut mengecewakan orang lain lebih besar daripada keinginan untuk membahagiakan diri sendiri",
-        "Merasa tertinggal ketika melihat pencapaian teman, meskipun sudah berusaha",
+        "Merasa tertinggal ketika melihat pencapaian teman, meskipun sudah berusaha keras",
         "Pikiran tentang masa depan mengganggu ketenangan saat ini"
       ]
     },
     {
       category: "Keluarga dan teman",
       questions: [
-        "Merasa tidak mendapat support system dari keluarga.",
-        "Memilih diam karna takut perasaan perasaan atau pendapat justru menjadi sumber masalah",
+        "Merasa tidak mendapat support system dari keluarga",
+        "Memilih diam karna takut perasaan atau pendapat justru menjadi sumber masalah",
         "Merasa harus menjadi orang yang kuat agar tidak merepotkan orang lain"
       ]
     },
     {
       category: "Kepercayaan diri",
       questions: [
-        "Meragukan kemampuan diri sebelum benar benar mencoba sesuatu",
+        "Meragukan kemampuan diri sebelum benar-benar mencoba sesuatu",
         "Merasa nilai diri bergantung pada pujian, pencapaian, atau pengakuan orang lain"
       ]
     },
@@ -42,7 +42,7 @@ const questionGroups = {
       category: "Cara menghadapi masalah",
       questions: [
         "Memilih memendam masalah sampai terasa lebih berat daripada yang seharusnya",
-        "Sulit meminta bantuan kepada orang lain saat menghadapi masalah meskipun saat benar benar membutuhkan"
+        "Sulit meminta bantuan kepada orang lain saat menghadapi masalah meskipun saat benar-benar membutuhkan"
       ]
     }
   ],
@@ -82,8 +82,8 @@ const questionGroups = {
     {
       category: "Cara dan perasaan menghadapi masalah",
       questions: [
-        "Mmemilih mnyelesaikan semuanya sendiri karena merasa tidak ingin mejadi beban bagi orang lain",
-        "Ketika menghadap asalah, seberapa sering kesulitan menerima bahwa diri sendiri juga membutuhkan dukungan"
+        "Memilih menyelesaikan semuanya sendiri karena merasa tidak ingin menjadi beban bagi orang lain",
+        "Ketika menghadapi masalah, seberapa sering kesulitan menerima bahwa diri sendiri juga membutuhkan dukungan"
       ]
     },
     {
@@ -100,7 +100,7 @@ const answerOptions = [
   { label: "Tidak pernah", value: 0 },
   { label: "Jarang", value: 1 },
   { label: "Beberapa kali", value: 2 },
-  { label: "Sering", value: 3 }
+  { label: "Selalu", value: 3 }
 ];
 
 const questionsContainer = document.getElementById("questions");
