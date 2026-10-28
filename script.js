@@ -389,7 +389,7 @@ renderStories();
 
 // Ganti dengan URL Cloudflare Worker milikmu.
 // Contoh: https://ruangdiri-ai.nama-akun.workers.dev
-const RUANG_DIRI_AI_URL = "GANTI_DENGAN_URL_WORKER_KAMU";
+const RUANG_DIRI_AI_URL = "https://icy-water-9ce8ruangdiri-ai.nazwatulnur06.workers.dev/";
 
 const aiButton = document.getElementById("ai-story-button");
 const aiLoading = document.getElementById("ai-story-loading");
