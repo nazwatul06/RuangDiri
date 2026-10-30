@@ -1047,3 +1047,99 @@ select:disabled {
         padding: 11px;
     }
 }
+
+/* ==========================================
+   STRESOS - ANIMATED NEON GREEN BOXES
+========================================== */
+
+/* ANIMASI MELELAH PERLAHAN */
+@keyframes neonFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* CAHAYA NEON BERDENYUT */
+@keyframes neonGlow {
+    0%, 100% {
+        box-shadow:
+            0 0 7px rgba(57, 255, 156, 0.25),
+            0 0 15px rgba(57, 255, 156, 0.12);
+    }
+    50% {
+        box-shadow:
+            0 0 12px rgba(57, 255, 156, 0.55),
+            0 0 25px rgba(57, 255, 156, 0.3);
+    }
+}
+
+/* KOTAK INPUT, TEXTAREA, DAN SELECT */
+input:not([type="radio"]):not([type="checkbox"]),
+textarea,
+select {
+    animation: neonGlow 3s ease-in-out infinite;
+}
+
+/* KOTAK PERTANYAAN KUESIONER */
+#questions .question {
+    animation:
+        neonFloat 5s ease-in-out infinite,
+        neonGlow 3s ease-in-out infinite;
+
+    transform-origin: center;
+}
+
+/* PILIHAN JAWABAN */
+#questions .options label {
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+
+    animation: neonFloat 4s ease-in-out infinite;
+}
+
+/* JEDA ANIMASI SETIAP PILIHAN */
+#questions .options label:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+#questions .options label:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+#questions .options label:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+/* EFEK HOVER */
+#questions .question:hover,
+#questions .options label:hover {
+    transform: translateY(-7px) scale(1.015);
+    box-shadow:
+        0 0 15px rgba(57, 255, 156, 0.65),
+        0 0 30px rgba(57, 255, 156, 0.25);
+}
+
+/* KOTAK CERITA DAN FORM */
+#storyForm input,
+#storyForm textarea,
+#storyForm select {
+    animation: neonFloat 5s ease-in-out infinite,
+               neonGlow 3s ease-in-out infinite;
+}
+
+/* AKSESIBILITAS: MATIKAN GERAKAN JIKA DIMINTA */
+@media (prefers-reduced-motion: reduce) {
+    input,
+    textarea,
+    select,
+    #questions .question,
+    #questions .options label {
+        animation: none !important;
+        transition: none !important;
+    }
+}
